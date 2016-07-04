@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TheShoeWebsite.Models.Order>
+@{
+    ViewBag.Title = "Danh sách hóa đơn";
+}
+<div class="span6">
+    <h2>
+        Danh sách hóa đơn</h2>
+    <p>
+        @Html.ActionLink("Thêm mới hóa đơn", "OrderCreate")
+    </p>
+    <table>
+        <tr>
+            <th>
+                Khách hàng
+            </th>
+            <th>
+               Ngày mua hàng
+            </th>
+            <th>
+     Tổng tiền
+            </th>
+            <th>
+                Họ tên khách
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+               Địa chỉ
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account.LoginName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "OrderEdit", new { id = item.OrderId }) |
+                    @Html.ActionLink("Details", "OrderDetails", new { id = item.OrderId }) |
+                    @Html.ActionLink("Delete", "OrderDelete", new { id = item.OrderId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

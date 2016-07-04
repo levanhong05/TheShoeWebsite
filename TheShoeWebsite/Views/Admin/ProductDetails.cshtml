@@ -1,0 +1,52 @@
+﻿@model TheShoeWebsite.Models.Product
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+}
+
+<div class="defaultContent BlockContent">
+<h2>Chi tiết sản phẩm</h2>
+
+<fieldset>
+    <legend>Product</legend>
+
+    <div class="display-label">Màu sắc</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Color)
+    </div>
+
+    <div class="display-label">Gía sản phẩm</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">Gía khuyến mãi</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SaleOf)
+    </div>
+
+    <div class="display-label">Thời gian bảo hành</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Warranty)
+    </div>
+
+    <div class="display-label">Chủng loại</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.Description)
+    </div>
+
+    <div class="display-label">Loại</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SubCategoryId)
+    </div>
+
+    <div class="display-label">Tên sản phẩm</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Sửa", "ProductEdit", new { id=Model.ProductId }) |
+    @Html.ActionLink("Quay về trang Quản trị", "Index")
+</p>
+</div>

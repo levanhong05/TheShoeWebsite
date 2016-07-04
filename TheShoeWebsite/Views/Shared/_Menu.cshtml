@@ -1,0 +1,103 @@
+﻿<div id="Menu">
+    <script type="text/javascript" src="/Extensions/js/jquery.mousewheel.pack.js"></script>
+    <script type="text/javascript" src="/Extensions/js/jquery.fancybox.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Extensions/js/jquery.fancybox.css" media="screen">
+    <div style="display: none;">
+    </div>
+    <style type="text/css">
+        .order-button-container
+        {
+            text-align: right;
+            float: right;
+            width: 460px;
+            margin: 10px 0px;
+        }
+        .clear
+        {
+            overflow: hidden;
+            width: 100%;
+        }
+        .order-button-container a.button
+        {
+            background: transparent url('/images/orderbutton/bg_button_a.gif') no-repeat scroll top right;
+            color: #444;
+            display: block;
+            float: right;
+            font: normal 12px arial, sans-serif;
+            height: 24px;
+            margin-right: 6px;
+            padding-right: 12px;
+            text-decoration: none;
+        }
+        .order-button-container a.button span
+        {
+            background: transparent url('/images/orderbutton/bg_button_span.gif') no-repeat;
+            display: block;
+            line-height: 14px;
+            padding: 5px 0 5px 12px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .order-button-container a.button:active
+        {
+            background-position: bottom right;
+            color: #000;
+            outline: none;
+        }
+        .order-button-container a.button:active span
+        {
+            background-position: bottom left;
+            padding: 6px 0 4px 12px;
+        }
+    </style>
+    <script type="text/javascript">
+        function toggleMenu(el1, el2, over) {
+            var p, prefix = 'nav-';
+            if (el2 == -1) p = document.getElementById(prefix + el1);
+            else p = document.getElementById(prefix + el1 + '-' + el2);
+            if (over == 1) { var newClassName = p.className + " over"; p.className = newClassName; }
+            else { var newClassName = p.className.replace(" over", ""); p.className = newClassName; }
+        }
+    </script>
+    <div id="navi">
+        <ul>
+            <li onmouseout="toggleMenu(1, -1, 0)" onmouseover="toggleMenu(1, -1, 1)" class="active"
+                id="nav-1"><a href="/Product" target=""><span>Trang chủ</span></a></li>
+            <li onmouseout="toggleMenu(2, -1, 0)" onmouseover="toggleMenu(2, -1, 1)" id="nav-2">
+                <a href="#" target=""><span>Giới thiệu</span></a></li>
+            <li onmouseout="toggleMenu(3, -1, 0)" onmouseover="toggleMenu(3, -1, 1)" class="has-sub" id="nav-3">
+                <a href=""><span>Sản phẩm</span></a>
+                <ul>
+                    <li onmouseout="toggleMenu(3, 1, 0)" onmouseover="toggleMenu(3, 1, 1)" class="has-sub" id="nav-3-1">
+                        <a href="/Category/Details/NA" target=""><span>Giày Nam</span></a>
+                            <ul>
+                                <li><a href="/SubCategory/Details/GDX" target=""><span>Giày dán xé</span></a></li>
+                                <li><a href="/SubCategory/Details/GCD" target=""><span>Giày cột dây </span></a></li>
+                                <li><a href="/SubCategory/Details/Sandal" target=""><span>Giày Sandal</span></a></li>
+                            </ul>
+                    </li>
+                    <li onmouseout="toggleMenu(3, 2, 0)" onmouseover="toggleMenu(3, 2, 1)" id="nav-3-2">
+                        <a href="/Category/Details/NU" target=""><span>Giày Nữ</span></a></li>
+                </ul>
+            </li>
+            <li onmouseout="toggleMenu(4, -1, 0)" onmouseover="toggleMenu(4, -1, 1)" id="nav-4">
+                <a href="/ShoppingCart" class="" target=""><span>Giỏ Hàng</span></a></li>
+            <li onmouseout="toggleMenu(5, -1, 0)" onmouseover="toggleMenu(5, -1, 1)" id="nav-5">
+                <a href="/Account/Register" class="" target=""><span>Đăng ký</span></a></li>
+            <li onmouseout="toggleMenu(7, -1, 0)" onmouseover="toggleMenu(7, -1, 1)" id="nav-7">
+                <a href="/Account/LogOn" class="" target=""><span>Đăng nhập</span></a></li>
+            <li onmouseout="toggleMenu(6, -1, 0)" onmouseover="toggleMenu(6, -1, 1)" id="nav-6">
+                <a href="#" class="" target=""><span>Liên hệ</span></a></li>
+        </ul>
+    </div>
+    <br /><br />
+    <div class="box_search">
+        <div class="bg_search">
+            <input name="txtSearch" type="text" id="txtSearch"
+                class="text_search">
+            <input type="image" name="btnSearch" value="" id="btnSearch"
+                class="input-search" src="/Content/images/search.gif">
+            
+        </div>
+    </div>
+</div>

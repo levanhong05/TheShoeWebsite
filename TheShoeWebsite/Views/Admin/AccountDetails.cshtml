@@ -1,0 +1,45 @@
+﻿@model TheShoeWebsite.Models.Account
+@{
+    ViewBag.Title = "Details";
+}
+<div class="defaultContent BlockContent">
+    <h2>
+        Details</h2>
+    <fieldset>
+        <legend>Account</legend>
+        <div class="display-label">
+            LoginName</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.LoginName)
+        </div>
+        <div class="display-label">
+            Address</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Address)
+        </div>
+        <div class="display-label">
+            PhoneNumber</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </div>
+        <div class="display-label">
+            Email</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+        <div class="display-label">
+            Password</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Password)
+        </div>
+        <div class="display-label">
+            UserName</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserName)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AccountId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

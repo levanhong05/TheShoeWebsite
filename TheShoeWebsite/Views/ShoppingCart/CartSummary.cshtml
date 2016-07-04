@@ -1,0 +1,45 @@
+﻿<div class="mini-cart DefaultModule">
+    <div class="DefaultContainer mini-cart-title">
+        <span>Giỏ hàng</span></div>
+    <div class="defaultContent mini-cart-content">
+        <div id="plist">
+            <div class="cartQty">
+                Có <a href="/ShoppingCart/Index" title="Chi tiết giỏ hàng"><span id="pInCart">@ViewData["CartCount"]</span>
+                    sản phẩm</a> trong giỏ.
+                <p class="subtotal">
+                    Tổng tiền: <b>
+                        @ViewBag.CartSum đ</b>
+                </p>
+            </div>
+            <div class="action" style="display: ;">
+                <a href="/CheckOut/SendOrder">Đặt hàng &amp; Thanh toán</a>
+            </div>
+            <hr>
+            <div class="product">
+                <div class="product-image">
+                    <a href="/converse-vai/converse-trang-tuyen-148428.html">
+                        <img src="/Thumbnail.ashx?img=sites/2290/data/images/2011/8/2107648giay (38).JPG&amp;width=50&amp;height=50"
+                            alt="">
+                    </a>
+                </div>
+                <div class="product-detail">
+                    <a class="widget-btn" href="javascript:void(0);" title="Xóa sản phẩm khỏi giỏ hàng"
+                        onclick="javascript:return RemoveProductCart(148428); ">
+                        <img src="/Images/list_remove_btn.gif" alt="">
+                    </a>
+                    <div>
+                        <a href="/converse-vai/converse-trang-tuyen-148428.html" title="Chi tiết sản phẩm">Converse
+                            trắng tuyền </a>
+                    </div>
+                    <div>
+                        <strong>1</strong> x <span class="price">399.000 đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear defaultFooter mini-cart-footer">
+        <div>
+        </div>
+    </div>
+</div>

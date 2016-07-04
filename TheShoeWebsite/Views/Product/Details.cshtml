@@ -1,0 +1,79 @@
+﻿@model TheShoeWebsite.Models.Product
+@{
+    ViewBag.Title = "Details";
+}
+<div class="ProductDetailContainer DetailItem DefaultModule">
+    <div id="ProductDetails" class="PrimaryProductDetails">
+        <div class="BlockContent">
+            <div class="product-title DefaultContainer">
+                <h2 class="translated">
+                    @Html.DisplayFor(model => model.Category.Description)- @Html.DisplayFor(model => model.ProductId)</h2>
+            </div>
+            <div class="ProductThumb">
+                <div style="display: none;" id="LightBoxImages">
+                    <a rel="lightbox" href="/Images/Product/@(Model.ProductImages.Select(i => i.Url).First())" class="iframe">
+                    </a>
+                </div>
+                <div class="ProductThumbImage" style="position: relative;">
+                    <a rel="lightbox" href="/Images/Product/@(Model.ProductImages.Select(i => i.Url).First())"
+                        style="outline-style: none; margin-top: auto; margin-right: auto;
+                        margin-bottom: auto; margin-left: auto; position: relative;
+                        display: block; height: 165px; width: 220px;">
+                        <img src="/Images/Product/@(Model.ProductImages.Select(i => i.Url).First())" width="220"height=220" 
+                        style="position: absolute; top: 0px; left: 0px;" title=""> </a>
+                </div>
+            </div>
+            <div class="ProductMain">
+                <div class="ProductDetailsGrid">
+                    <div style="" class="DetailRow">
+                        <div class="Label">
+                            Giá bán <em class="ProductPrice VariationProductPrice"></em>:</div>
+                        <div class="Value">
+                            <em class="ProductPrice VariationProductPrice">@String.Format("{0:0,0 VNĐ}", Convert.ToInt32(Model.Price))</em>
+                        </div>
+                    </div>
+                    <div style="display: ;" class="DetailRow">
+                        <div class="Label">
+                            Màu sắc:  @Model.Color</div>
+                            <br />
+                          
+                        <div class="Value">
+                            <div class="ProductRating Rating-1">
+                                <div class="RatingImage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: ;" class="DetailRow">
+                        <div class="Label">
+                            Phí vận chuyển:</div>
+                        <div class="Value">
+                            Tính phí khi thanh toán
+                        </div>
+                    </div>
+                </div>
+                <div class="ProductDetailsGrid ProductAddToCart">
+                    <div style="" class="DetailRow">
+                        <div style="" class="Label QuantityInput">
+                            Số lượng:</div>
+                        <div class="Value AddCartButton">
+                            <div style="">
+                                <input name="ctl00$cphMain$ctl00$ctl02$ctl00$qty_" type="text" id="ctl00_cphMain_ctl00_ctl02_ctl00_qty_"
+                                    style="width: 50px;" class="Field45 quantityInput NormalTextBox" maxlength="2"
+                                    value="1" onkeypress="javascript:return keypress(event);">
+                            </div>
+                            <div id="BulkDiscount" class="BulkDiscount">
+                                 @Html.ActionLink("Mua hàng", "AddToCart",
+        "ShoppingCart", new { id = Model.ProductId }, "")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br class="Clear">
+            <hr>
+        </div>
+    </div>
+    <hr class="Clear">
+</div>

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<TheShoeWebsite.Models.Category>
+<div class="Category">
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(modelItem => item.Description)
+        @Html.ActionLink("Giày", "Details", @item.CategoryId)
+    }
+</div>

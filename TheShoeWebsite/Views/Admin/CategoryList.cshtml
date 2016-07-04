@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TheShoeWebsite.Models.Category>
+@{
+    ViewBag.Title = "Chủng loại";
+}
+<div class="span6">
+    <h2>
+        Chủng loại</h2>
+    <p>
+        @Html.ActionLink("Thêm mới", "CategoryCreate")
+    </p>
+    <table>
+        <tr>
+            <th>
+                Description
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "CategoryEdit", new { id = item.CategoryId }) |
+                    @Html.ActionLink("Chi tiết ", "CategoryDetails", new { id = item.CategoryId }) |
+                    @Html.ActionLink("Xóa", "CategoryDelete", new { id = item.CategoryId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

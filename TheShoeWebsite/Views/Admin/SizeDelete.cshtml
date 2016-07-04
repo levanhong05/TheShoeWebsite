@@ -1,0 +1,23 @@
+﻿@model TheShoeWebsite.Models.Size
+
+@{
+    ViewBag.Title = "Xóa kích thức ";
+}
+
+<h2>Xóa Kích thước</h2>
+
+<h3>Bạn có muốn xóa kích thước này hay không</h3>
+<fieldset>
+    <legend>Size</legend>
+
+    <div class="display-label">Kích thước</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Quay trở về trang Quản Trị", "Index")
+    </p>
+}

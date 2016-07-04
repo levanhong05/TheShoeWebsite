@@ -1,0 +1,45 @@
+﻿@model TheShoeWebsite.Models.Order
+@{
+    ViewBag.Title = "Details";
+}
+<div class="defaultContent BlockContent">
+    <h2>
+        Details</h2>
+    <fieldset>
+        <legend>Order</legend>
+        <div class="display-label">
+            Account</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Account.LoginName)
+        </div>
+        <div class="display-label">
+            OrderDate</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+        <div class="display-label">
+            Total</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Total)
+        </div>
+        <div class="display-label">
+            FullName</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FullName)
+        </div>
+        <div class="display-label">
+            PhoneNumber</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </div>
+        <div class="display-label">
+            Address</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Address)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

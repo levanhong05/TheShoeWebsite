@@ -1,0 +1,52 @@
+﻿@model TheShoeWebsite.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+}
+
+<div class="defaultContent BlockContent">
+<h2>Xóa sản phẩm</h2>
+
+<h3>Bạn có muốn xóa sản phẩm này hay không?</h3>
+<fieldset>
+    <div class="display-label">Color</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Color)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">SaleOf</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SaleOf)
+    </div>
+
+    <div class="display-label">Warranty</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Warranty)
+    </div>
+
+    <div class="display-label">Category</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.Description)
+    </div>
+
+    <div class="display-label">SubCategoryId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SubCategoryId)
+    </div>
+
+    <div class="display-label">ProductName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+</div>

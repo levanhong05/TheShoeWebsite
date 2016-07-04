@@ -1,0 +1,51 @@
+﻿@model TheShoeWebsite.Models.Order
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="defaultContent BlockContent">
+    <h2>
+        Delete</h2>
+    <h3>
+        Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend>Order</legend>
+        <div class="display-label">
+            Account</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Account.LoginName)
+        </div>
+        <div class="display-label">
+            OrderDate</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+        <div class="display-label">
+            Total</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Total)
+        </div>
+        <div class="display-label">
+            FullName</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FullName)
+        </div>
+        <div class="display-label">
+            PhoneNumber</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </div>
+        <div class="display-label">
+            Address</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Address)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        <p>
+            <input type="submit" value="Delete" />
+            |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+</div>

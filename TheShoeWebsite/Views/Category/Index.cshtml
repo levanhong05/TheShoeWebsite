@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TheShoeWebsite.Models.Category>
+<div id="cate-menu" class="DefaultModule">
+    <div class="DefaultContainer cate-menu-title">
+        <span>Danh mục sản phẩm</span>
+    </div>
+    <div class="defaultContent cate-menu-content">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="level0 first"><a href="/Category/Details/@item.CategoryId"><span>
+                    @item.Description</span></a>
+                    <ul style="display: block;">
+                        @foreach (var sub in item.SubCategories)
+                        {
+                            <li class="level1 first"><a href="/converse-vai/39483.html"><span>
+                                @sub.Description</span></a>
+                                <ul style="display: block;">
+                                </ul>
+                            </li>
+                        }
+                        <li class="level1"><a href="/converse-da/39484.html"><span>Converse da</span></a>
+                            <ul style="display: block;">
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            }
+            <li class="level0"><a href="/conveser-nu/34261.html"><span>Conveser Nữ</span></a>
+                <ul style="display: block;">
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="defaultFooter cate-menu-footer">
+        <div>
+        </div>
+    </div>
+</div>
+*@

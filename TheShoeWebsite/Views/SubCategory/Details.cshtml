@@ -1,0 +1,89 @@
+﻿@model IEnumerable< TheShoeWebsite.Models.Product>
+@{
+    ViewBag.Title = "Sản phẩm theo loại";
+}
+<div id="HomeFeaturedProducts" class="Block FeaturedProducts DefaultModule">
+    <div class="DefaultContainer TitleContent">
+        <span></span></div>
+    <div class="defaultContent BlockContent">
+        <ul class="span6">
+            @foreach (var item in Model )
+            {
+                <div class="span2">
+                <div class="is-padded">
+                    <div id="ProductImage" class="ProductImage">
+                        <a class="#tooltip@(item.ProductId)" href="/Product/Details/@item.ProductId">
+                            <img alt="" src="/Images/Product/@(item.ProductImages.Select(i => i.Url).First())"
+                                                             width="120" height="120">
+                        </a>
+                    </div>
+                    <div class="saleFlag iconSprite disable">
+                    </div>
+                    <div class="ProductDetails">
+                        <strong><a href="/Product/Details/@item.ProductId">@item.Category.SubCategories.Single(s=>s.SubCatId.Trim()==item.SubCategoryId.Trim()).Description -@item.ProductId</a></strong>
+                    </div>
+                    <div class="ProductPrice">
+                        <div class="retail-price disable">
+                            <span class="price-label"></span><span class="price"><strike class="RetailPriceValue">
+                            </strike></span>
+                        </div>
+                        <div class="special-price">
+                            <span class="price-label"></span><span class="price"><em>@String.Format("{0:0,0 VNĐ}", Convert.ToInt32(item.Price))
+                            </em></span>
+                        </div>
+                    </div>
+                    <div class="ProductRating Rating-1" style="display: ;">
+                        <div class="RatingImage">
+                        </div>
+                    </div>
+                    <div class="ProductActionAdd">
+                         @Html.ActionLink("Mua hàng", "AddToCart",
+        "ShoppingCart", new { id = item.ProductId }, "")
+                        </div>
+                    <div id="tooltip@(item.ProductId)" class="hidden">
+                        <div class="tooltip_name">
+                            High top original 2011</div>
+                        <div class="tooltip_picture">
+                            <img src="/Images/Product/@(item.ProductImages.Select(i => i.Url).First())" width="350" height="300" alt="">
+                        </div>
+                        <div class="tooltip_description">
+                            mang những nét đặc trưng của đôi low top original 2011 nhưng với thiết kế cổ cao
+                            thêm phần mạnh mẽ cá tính
+                        </div>
+                        <div class="promotion-description" style="display: none;">
+                            Khuyến mãi: <em></em>
+                        </div>
+                        <div class="teaser">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            }
+            <br class="Clear">
+        </ul>
+        <div class="Clear">
+        </div>
+    </div>
+    <div class="defaultFooter FooterContent">
+        <div>
+        </div>
+    </div>
+    <div class="Clear">
+    </div>
+</div>
+<script type="text/javascript">
+    $j(function () {
+        $j("#ProductImage a").tooltip({
+            track: true,
+            delay: 0,
+            bodyHandler: function () { return $j($j(this).attr("class")).html(); },
+            showURL: false
+        });
+        $j(".product-image a").tooltip({
+            track: true,
+            delay: 0,
+            bodyHandler: function () { return $j($j(this).attr("class")).html(); },
+            showURL: false
+        });
+    });
+</script>

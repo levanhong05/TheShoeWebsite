@@ -1,0 +1,37 @@
+﻿<div class="weather DefaultModule">
+    <div class="DefaultContainer TextHTML-Title">
+        <span style="font-size:x-large"><strong>Tìm kiếm nâng cao</strong></span></div>
+    <div class="DefaultContainer TextHTML-content">
+
+        <script type="text/javascript">
+            function doi_khoang_gia(value) {
+                document.getElementById('tk_khoanggia').value = value
+            }
+            function timkiemnangcao() {
+                submit_form2('timnangcao_echo', 'nuttimnangcao', 'xml/gianhang_sanpham/timkiemnangcao.php', 'timkiemnangcao');
+            }
+        </script>
+
+        <div id="timkiemnangcao">
+            <div>Từ khóa</div>
+                <input onkeydown="if(event.keyCode==13) timkiemnangcao()"  class="tk_input" id="tk_tukhoa" type="text" style="width:auto" /> 
+
+            <div>Danh mục</div>
+               <select  class="tk_input" id="tk_danhmuc" border="1" name="danh_muc" size="1" style="FONT-FAMILY: Tahoma; ">>
+                    <option value="">Tất cả</option>
+		            <option value="6">Giày dán xé</option>
+		            <option value="5">Giày cột dây</option>
+		            <option value="4">Giày Sandal</option>
+		            <option value="2">Giày Nam</option>
+		            <option value="1">Giày Nữ</option>
+		        </select>
+
+            <div>Khoảng giá</div><input type="hidden" id="tk_khoanggia" />
+                <input onclick="doi_khoang_gia(this.value)"  checked="checked"  name="khoanggia_timnhanh" type="radio" value="" />Tất cả<br />
+
+            <div align="center" id="timnangcao_echo">
+                <input value="Tìm kiếm" onclick="timkiemnangcao()" id="nuttimnangcao" type="button" /></div>
+</div>
+    </div>
+    <div class="defaultFooter weather-footer"><div></div></div>
+</div>

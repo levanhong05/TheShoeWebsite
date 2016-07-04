@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BanGiayModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="BanGiayModelStoreContainer">
+          <EntitySet Name="Account" EntityType="BanGiayModel.Store.Account" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cart" EntityType="BanGiayModel.Store.Cart" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="BanGiayModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Manager" EntityType="BanGiayModel.Store.Manager" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="BanGiayModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderDetail" EntityType="BanGiayModel.Store.OrderDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="BanGiayModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductImage" EntityType="BanGiayModel.Store.ProductImage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductSize" EntityType="BanGiayModel.Store.ProductSize" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Size" EntityType="BanGiayModel.Store.Size" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubCategory" EntityType="BanGiayModel.Store.SubCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRole" EntityType="BanGiayModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Cart_Product" Association="BanGiayModel.Store.FK_Cart_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_ACCOUNT" Association="BanGiayModel.Store.FK_ORDER_ACCOUNT">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Detail_Order" Association="BanGiayModel.Store.FK_Order_Detail_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Detail_Product" Association="BanGiayModel.Store.FK_Order_Detail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT__PRODUCT_S_SIZE" Association="BanGiayModel.Store.FK_PRODUCT__PRODUCT_S_SIZE">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="ProductSize" EntitySet="ProductSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT__SIZE" Association="BanGiayModel.Store.FK_PRODUCT__SIZE">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductSize" EntitySet="ProductSize" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="BanGiayModel.Store.FK_PRODUCT_CATEGORY">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_IMAGE" Association="BanGiayModel.Store.FK_PRODUCT_IMAGE">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductImage" EntitySet="ProductImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sub_Category_Category" Association="BanGiayModel.Store.FK_Sub_Category_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="BanGiayModel.Store.FK_User_Role">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsAdmin" Type="bit" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CartId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="255" />
+          <Property Name="NickName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="RoleId" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="Total" Type="money" />
+          <Property Name="FullName" Type="nchar" MaxLength="255" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="255" />
+          <Property Name="Address" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Order_DetailsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CurrentPrice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="SaleOf" Type="money" />
+          <Property Name="Warranty" Type="tinyint" />
+          <Property Name="CategoryId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="SubCategoryId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductSize">
+          <Key>
+            <PropertyRef Name="SizeId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="SizeId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCatId" />
+          </Key>
+          <Property Name="SubCatId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CategoryId" Type="nvarchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Cart_Product">
+          <End Role="Product" Type="BanGiayModel.Store.Product" Multiplicity="1" />
+          <End Role="Cart" Type="BanGiayModel.Store.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_ACCOUNT">
+          <End Role="Account" Type="BanGiayModel.Store.Account" Multiplicity="1" />
+          <End Role="Order" Type="BanGiayModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Detail_Order">
+          <End Role="Order" Type="BanGiayModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="BanGiayModel.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Detail_Product">
+          <End Role="Product" Type="BanGiayModel.Store.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="BanGiayModel.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT__PRODUCT_S_SIZE">
+          <End Role="Size" Type="BanGiayModel.Store.Size" Multiplicity="1" />
+          <End Role="ProductSize" Type="BanGiayModel.Store.ProductSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="ProductSize">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT__SIZE">
+          <End Role="Product" Type="BanGiayModel.Store.Product" Multiplicity="1" />
+          <End Role="ProductSize" Type="BanGiayModel.Store.ProductSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductSize">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_CATEGORY">
+          <End Role="Category" Type="BanGiayModel.Store.Category" Multiplicity="1" />
+          <End Role="Product" Type="BanGiayModel.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_IMAGE">
+          <End Role="Product" Type="BanGiayModel.Store.Product" Multiplicity="0..1" />
+          <End Role="ProductImage" Type="BanGiayModel.Store.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sub_Category_Category">
+          <End Role="Category" Type="BanGiayModel.Store.Category" Multiplicity="1" />
+          <End Role="SubCategory" Type="BanGiayModel.Store.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="UserRole" Type="BanGiayModel.Store.UserRole" Multiplicity="0..1" />
+          <End Role="Manager" Type="BanGiayModel.Store.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetAllCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllCustommer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllProduct_Image" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllProductImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllSize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllSubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetProductByCategoryId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetProductById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetProductBySubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSubCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryID" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BanGiayModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BanGiayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="BanGiayModel.Account" />
+          <EntitySet Name="Carts" EntityType="BanGiayModel.Cart" />
+          <EntitySet Name="Categories" EntityType="BanGiayModel.Category" />
+          <EntitySet Name="Managers" EntityType="BanGiayModel.Manager" />
+          <EntitySet Name="Orders" EntityType="BanGiayModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="BanGiayModel.OrderDetail" />
+          <EntitySet Name="Products" EntityType="BanGiayModel.Product" />
+          <EntitySet Name="ProductImages" EntityType="BanGiayModel.ProductImage" />
+          <EntitySet Name="Sizes" EntityType="BanGiayModel.Size" />
+          <EntitySet Name="SubCategories" EntityType="BanGiayModel.SubCategory" />
+          <EntitySet Name="UserRoles" EntityType="BanGiayModel.UserRole" />
+          <AssociationSet Name="FK_ORDER_ACCOUNT" Association="BanGiayModel.FK_ORDER_ACCOUNT">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Product" Association="BanGiayModel.FK_Cart_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="BanGiayModel.FK_PRODUCT_CATEGORY">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sub_Category_Category" Association="BanGiayModel.FK_Sub_Category_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="BanGiayModel.FK_User_Role">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="Manager" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Detail_Order" Association="BanGiayModel.FK_Order_Detail_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Detail_Product" Association="BanGiayModel.FK_Order_Detail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_IMAGE" Association="BanGiayModel.FK_PRODUCT_IMAGE">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="ProductSize" Association="BanGiayModel.ProductSize">
+            <End Role="Size" EntitySet="Sizes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <NavigationProperty Name="Orders" Relationship="BanGiayModel.FK_ORDER_ACCOUNT" FromRole="Account" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="BanGiayModel.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="BanGiayModel.FK_PRODUCT_CATEGORY" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="SubCategories" Relationship="BanGiayModel.FK_Sub_Category_Category" FromRole="Category" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="NickName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="RoleId" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="UserRole" Relationship="BanGiayModel.FK_User_Role" FromRole="Manager" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FullName" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="Address" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Account" Relationship="BanGiayModel.FK_ORDER_ACCOUNT" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="OrderDetails" Relationship="BanGiayModel.FK_Order_Detail_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Order_DetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="CurrentPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Order" Relationship="BanGiayModel.FK_Order_Detail_Order" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="BanGiayModel.FK_Order_Detail_Product" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Color" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SaleOf" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Warranty" Type="Byte" />
+          <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="SubCategoryId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ProductName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Carts" Relationship="BanGiayModel.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="Category" Relationship="BanGiayModel.FK_PRODUCT_CATEGORY" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="BanGiayModel.FK_Order_Detail_Product" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="ProductImages" Relationship="BanGiayModel.FK_PRODUCT_IMAGE" FromRole="Product" ToRole="ProductImage" />
+          <NavigationProperty Name="Sizes" Relationship="BanGiayModel.ProductSize" FromRole="Product" ToRole="Size" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Url" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Product" Relationship="BanGiayModel.FK_PRODUCT_IMAGE" FromRole="ProductImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="BanGiayModel.ProductSize" FromRole="Size" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCatId" />
+          </Key>
+          <Property Name="SubCatId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="BanGiayModel.FK_Sub_Category_Category" FromRole="SubCategory" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Role" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Managers" Relationship="BanGiayModel.FK_User_Role" FromRole="UserRole" ToRole="Manager" />
+        </EntityType>
+        <Association Name="FK_ORDER_ACCOUNT">
+          <End Role="Account" Type="BanGiayModel.Account" Multiplicity="1" />
+          <End Role="Order" Type="BanGiayModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Product">
+          <End Role="Product" Type="BanGiayModel.Product" Multiplicity="1" />
+          <End Role="Cart" Type="BanGiayModel.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_CATEGORY">
+          <End Role="Category" Type="BanGiayModel.Category" Multiplicity="1" />
+          <End Role="Product" Type="BanGiayModel.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sub_Category_Category">
+          <End Role="Category" Type="BanGiayModel.Category" Multiplicity="1" />
+          <End Role="SubCategory" Type="BanGiayModel.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="UserRole" Type="BanGiayModel.UserRole" Multiplicity="0..1" />
+          <End Role="Manager" Type="BanGiayModel.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Detail_Order">
+          <End Role="Order" Type="BanGiayModel.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="BanGiayModel.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Detail_Product">
+          <End Role="Product" Type="BanGiayModel.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="BanGiayModel.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_IMAGE">
+          <End Role="Product" Type="BanGiayModel.Product" Multiplicity="0..1" />
+          <End Role="ProductImage" Type="BanGiayModel.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductSize">
+          <End Role="Size" Type="BanGiayModel.Size" Multiplicity="*" />
+          <End Role="Product" Type="BanGiayModel.Product" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BanGiayModelStoreContainer" CdmEntityContainer="BanGiayEntities">
+          <EntitySetMapping Name="Accounts"><EntityTypeMapping TypeName="BanGiayModel.Account"><MappingFragment StoreEntitySet="Account">
+            <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+            <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Role" ColumnName="Role" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Carts"><EntityTypeMapping TypeName="BanGiayModel.Cart"><MappingFragment StoreEntitySet="Cart">
+            <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+            <ScalarProperty Name="CartId" ColumnName="CartId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Count" ColumnName="Count" />
+            <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="BanGiayModel.Category"><MappingFragment StoreEntitySet="Category">
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Managers"><EntityTypeMapping TypeName="BanGiayModel.Manager"><MappingFragment StoreEntitySet="Manager">
+            <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="NickName" ColumnName="NickName" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Gender" ColumnName="Gender" />
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Orders"><EntityTypeMapping TypeName="BanGiayModel.Order"><MappingFragment StoreEntitySet="Order">
+            <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+            <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+            <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+            <ScalarProperty Name="Total" ColumnName="Total" />
+            <ScalarProperty Name="FullName" ColumnName="FullName" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails"><EntityTypeMapping TypeName="BanGiayModel.OrderDetail"><MappingFragment StoreEntitySet="OrderDetail">
+            <ScalarProperty Name="Order_DetailsId" ColumnName="Order_DetailsId" />
+            <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+            <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Products"><EntityTypeMapping TypeName="BanGiayModel.Product"><MappingFragment StoreEntitySet="Product">
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Color" ColumnName="Color" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="SaleOf" ColumnName="SaleOf" />
+            <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+            <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProductImages"><EntityTypeMapping TypeName="BanGiayModel.ProductImage"><MappingFragment StoreEntitySet="ProductImage">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Url" ColumnName="Url" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sizes"><EntityTypeMapping TypeName="BanGiayModel.Size"><MappingFragment StoreEntitySet="Size">
+            <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SubCategories"><EntityTypeMapping TypeName="BanGiayModel.SubCategory"><MappingFragment StoreEntitySet="SubCategory">
+            <ScalarProperty Name="SubCatId" ColumnName="SubCatId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserRoles"><EntityTypeMapping TypeName="BanGiayModel.UserRole"><MappingFragment StoreEntitySet="UserRole">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="Role" ColumnName="Role" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="ProductSize" TypeName="BanGiayModel.ProductSize" StoreEntitySet="ProductSize">
+            <EndProperty Name="Size">
+              <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="BanGiayModel.Account" Width="1.5" PointX="3.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.Cart" Width="1.5" PointX="5.25" PointY="5.375" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.Category" Width="1.5" PointX="0.75" PointY="7" Height="1.7879850260416648" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.Manager" Width="1.5" PointX="11" PointY="2.125" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.Order" Width="1.5" PointX="6" PointY="1.5" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.OrderDetail" Width="1.5" PointX="8.25" PointY="6.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.Product" Width="1.5" PointX="3" PointY="6.125" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.ProductImage" Width="1.5" PointX="5.25" PointY="11.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.Size" Width="1.5" PointX="0.75" PointY="4.125" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.SubCategory" Width="1.5" PointX="3" PointY="12.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanGiayModel.UserRole" Width="1.5" PointX="8.75" PointY="2.625" Height="1.5956835937500031" IsExpanded="true" />
+        <AssociationConnector Association="BanGiayModel.FK_ORDER_ACCOUNT" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="2.6920475260416667" />
+          <ConnectorPoint PointX="6" PointY="2.6920475260416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_Cart_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.9324446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="6.9324446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_PRODUCT_CATEGORY" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.8939925130208319" />
+          <ConnectorPoint PointX="3" PointY="7.8939925130208319" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_Sub_Category_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.7879850260416639" />
+          <ConnectorPoint PointX="1.5" PointY="13.518992513020834" />
+          <ConnectorPoint PointX="3" PointY="13.518992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_User_Role" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.25" PointY="3.4228417968750016" />
+          <ConnectorPoint PointX="11" PointY="3.4228417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_Order_Detail_Order" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.15625" PointY="4.2494921875" />
+          <ConnectorPoint PointX="7.15625" PointY="8.3961393229166674" />
+          <ConnectorPoint PointX="8.25" PointY="8.3961393229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_Order_Detail_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.0367643229166674" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="8.0367643229166674" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="8.0367643229166674" />
+          <ConnectorPoint PointX="8.25" PointY="8.0367643229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.FK_PRODUCT_IMAGE" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.6436979166666674" />
+          <ConnectorPoint PointX="4.875" PointY="10.018697916666667" />
+          <ConnectorPoint PointX="4.875" PointY="12.518992513020834" />
+          <ConnectorPoint PointX="5.25" PointY="12.518992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="BanGiayModel.ProductSize" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.922841796875" />
+          <ConnectorPoint PointX="3.75" PointY="4.922841796875" />
+          <ConnectorPoint PointX="3.75" PointY="6.125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

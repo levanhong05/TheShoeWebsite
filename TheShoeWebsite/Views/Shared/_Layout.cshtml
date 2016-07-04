@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="/Content/Site.css">
+<link rel="stylesheet" type="text/css" href="/Content/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/Content/bootstrap-responsive.css">
+@RenderPage("_Head.cshtml")
+<body>
+    <div class="well">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    @RenderPage("_Header.cshtml")
+                    <br />
+                    <div id="navi">
+                        @RenderPage("_Menu.cshtml")
+                    </div>
+                    <!--/navi -->
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <br /><br /><br /><hr/>
+            <div class="row">
+                <div class="span3">
+                    @RenderPage("_LeftMenu.cshtml")
+                    <br />
+                    @RenderPage("_SupportOnline.cshtml")
+                    <br />
+                    @RenderPage("_Advertise.cshtml")
+                    @{Html.RenderAction("LeftMenu", "Category");}
+                </div>
+                <div class="span6">
+                    @RenderPage("_SlideShow.cshtml")
+                    @RenderBody()
+                </div>
+                <div class="span3">
+                    @RenderPage("_miniCart.cshtml")
+                    <br />
+                    @RenderPage("_Search_Advantage.cshtml")
+                    <br />
+                    @RenderPage("_SiteLink.cshtml")
+                    <br />
+                    @RenderPage("Weather.cshtml")
+                    <br />
+                    @RenderPage("_UserOnline.cshtml")
+                    <br />
+                    @RenderPage("_Tooltip.cshtml")
+                </div>
+            </div>
+        </div>
+
+        <br class="clearfix">
+        <hr>
+        <div class="well row span12">
+  	        <h3>Bình Luận qua Facebook (Tính năng đang thử nghiệm)</h3>
+  	        <iframe src="https://www.facebook.com/plugins/feedback.php?href=https%3A%2F%2Fwww.facebook.com%2Fplugins%2Fcomments_v1.php%3Fxid%3D118033811586748%26page_id%3D214277361930292&amp;permalink=0&amp;limit=10&amp;order_by=reverse_time&amp;hide_post_profile=0" scrolling="yes" frameborder="yes" name="comments4f740729dc9931310744582" height="300" width="1130" style="text-align:center"></iframe>
+	    </div>
+	    <hr>
+        <footer class="row">
+            <div>
+                <div class="span12">
+                    <div class="is-padded">
+                        <p>
+                            <span style="color: #0000FF;"><strong> Giày Xóm Trọ Chuyên cung cấp giầy 
+                                                                    nam nữ chất lượng cao, giá cả phù hợp<br>
+                                                    Địa chỉ: Số 167 - Đường Nam Hòa - Quận 9 -Thành phố Hồ Chí Minh<br>
+                                                    Email: levanhong05@gmail.com&nbsp; -&nbsp; Website:</strong></span><span style="color: #ff0000;"><strong>
+                                </strong></span><strong><a href="http://alogiay.vn"><span style="color: #ff0000;">http://alogiay.vn</span></a></strong><span
+                                style="color: #0000FF;"><strong> HOT LINE: 01648 271 680 (Mr Hong)</strong></span>
+                        </p>
+                    </div>
+                </div>
+            </div>                
+            <p> Copyright &copy; 2013 All Right Reserved.<br>
+                Thiết kế bởi <a href="http://levanhong.webng.com/index.html" title="Eric Lee" target="_blank"><strong>
+                Eric Lee</strong></a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

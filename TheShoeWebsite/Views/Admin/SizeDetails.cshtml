@@ -1,0 +1,21 @@
+﻿@model TheShoeWebsite.Models.Size
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="defaultContent BlockContent">
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Size</legend>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.SizeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</div>

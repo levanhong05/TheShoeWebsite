@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TheShoeWebsite.Models.Account>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="defaultContent BlockContent">
+    <h2>
+        Index</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+            <th>
+                LoginName
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                PhoneNumber
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                UserName
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoginName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.AccountId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.AccountId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.AccountId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

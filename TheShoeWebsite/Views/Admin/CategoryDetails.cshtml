@@ -1,0 +1,21 @@
+﻿@model TheShoeWebsite.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+ <div class="defaultContent BlockContent">
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Category</legend>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CategoryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+ </div>
